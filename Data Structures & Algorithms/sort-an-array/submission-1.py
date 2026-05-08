@@ -1,0 +1,25 @@
+class Solution:
+    def merge(self,left,right):
+        i,j,sorted = 0,0,[]
+        while i < len(left) and j < len(right):
+            if left[i] > right [j]:
+                sorted.append(right[j])
+                j+=1
+            else:
+                sorted.append(left[i])
+                i+=1
+        while i < len(left):
+            sorted.append(left[i])
+            i+=1
+        while j < len(right):
+            sorted.append(right[j])
+            j+=1
+        return sorted
+    def sortArray(self, nums: List[int]) -> List[int]:
+        if len(nums) <= 1:
+            return nums
+        mid = len(nums)//2
+        left = self.sortArray(nums[:mid])
+        right = self.sortArray(nums[mid:])
+        return self.merge(left,right)
+                 
